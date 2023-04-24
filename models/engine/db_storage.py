@@ -15,7 +15,8 @@ from os import getenv
 
 all_classes = {'State': State, 'City': City,
                'User': User, 'Place': Place,
-               'Review': Review, 'Amenity': Amenity}
+               'Review': Review, 'Amenity': Amenity
+               }
 
 
 class DBStorage:
@@ -32,15 +33,11 @@ class DBStorage:
         """Create SQLAlchemy engine
         """
         # create engine
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}:3306/{}'.
-                                      format(getenv('HBNB_MYSQL_USER'),
-                                             getenv('HBNB_MYSQL_PWD'),
-                                             getenv('HBNB_MYSQL_HOST'),
-                                             getenv('HBNB_MYSQL_DB')),
-                                      pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}:3306/{}'.format(getenv('HBNB_MYSQL_USER'), getenv(
+            'HBNB_MYSQL_PWD'), getenv('HBNB_MYSQL_HOST'), getenv('HBNB_MYSQL_DB')), pool_pre_ping=True)
         # drop tables if test environment
         if getenv('HBNB_ENV') == 'test':
-                Base.metadata.drop_all(self.__engine)
+            Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """Query and return all objects by class/generally
