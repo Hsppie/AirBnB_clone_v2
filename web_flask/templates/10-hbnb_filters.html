@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>AirBnB clone</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='3-footer.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='3-header.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='4-common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='6-filters.css')}}">
+</head>
+
+<body>
+    <header>
+        <div id="header_logo"></div>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <button>Search</button>
+            <div class="locations">
+                <h3>States</h3>
+                <h4>&nbsp;</h4>
+                <div class="popover">
+                    <ul>
+                        {% for state in states.values()|sort(attribute="name") %}
+                        <li><strong>{{ state.name }}</strong>
+                            <ul>
+                                {% for city in state.cities | sort(attribute="name") %}
+                                <li>{{ city.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="amenities">
+                <H3>Amenities</H3>
+                <H4>&nbsp;</H4>
+                <ul>
+                    {% for amenity in amenities.values() | sort(attribute="name") %}
+                    <li>amenty.name</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>Holberton School</p>
+    </footer>
+</body>
+
+</html>
